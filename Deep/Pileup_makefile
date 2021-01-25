@@ -1,0 +1,47 @@
+# Makefile to create pileups for downstream AI analysis
+
+SHELL := /bin/bash
+
+bamFolder=../Bam
+aiScript=ai_preprocessing.R
+1KGSnps=/nfs/rprdata/RefSnps/dbSNP144.hg38/snp144Common.bed.gz
+#genome=/nfs/rprdata/RefGenome/HISAT2/hg19.fa
+genome=/nfs/rprdata/Anthony/data/HISAT2_Index/hg38_noChr.fa
+
+filtStr='$$4>0 && $$5 !~ /[^\^][<>]/ && $$5 !~ /\+[0-9]+[ACGTNacgtn]+/ && $$5 !~ /-[
+0-9]+[ACGTNacgtn]+/ && $$5 !~ /[^\^]\*/'
+bedStr='{ print $$1,$$2-1,$$2,$$3,$$4,$$5,$$6}'
+
+memory=80gb
+Qsub.ppn=2
+Qsub.q=wsuq
+Qsub.N=pileup
+Qsub.t=100
+
+.SECONDARY:
+
+%.Qsub:
+        while ((`qme | grep $(Qsub.q) | wc -l` > $(Qsub.t))); do sleep 1; done
+        touch $@
+        echo "cd $${PWD}; make $*" | qsub -q $(Qsub.q) -l nodes=1:ppn=$(Qsub.ppn) -l mem=$(memory) -N $(Qsub.N) -o $@ -e $@.e
+        sleep 1;
+
+%.pileup.gz: $(bamFolder)/%_clean.bam $(genome) $(1KGSnps)
+        module load bedtools; \
+        module load samtools; \
+        samtools mpileup -f $(genome) -l $(1KGSnps) -d 1000000 $< | bgzip > $@
+
+%.pileup.bed.gz: %.pileup.gz $(1KGSnps)
+        module load bedtools; \
+        module load samtools; \
+        less $< | awk $(filtStr) | awk -v OFS='\t' $(bedStr) | sortBed -i stdin | intersectBed -a stdin -b $(1KGSnps) -wo | gzip > $@
+
+%.pileup.clean.bed.gz: %.pileup.bed.gz
+        -R --vanilla --args $^ $@ < $(aiScript) 2> $@.e
+
+all_pileups: $(patsubst $(bamFolder)/%_clean.bam,%.pileup.clean.bed.gz.Qsub,$(wildcard $(bamFolder)/*_clean.bam))
+
+clean:
+        rm *.pileup.gz
+        rm *.pileup.bed.gz
+        rm *.pileup.clean.bed.gz
