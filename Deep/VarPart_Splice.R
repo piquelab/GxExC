@@ -1,6 +1,6 @@
 # Anthony Findley
 
-# This is Alan's script to do the variance partitioning of splicing on all cells together. I've modified it to ensure that our colors and labels are identical.
+# This is Alan's script to do the variance partitioning of splicing on all cells together, and then on each cell type separately. I've modified it to ensure that our colors and labels are identical.
 # Folder: /nfs/rprdata/Anthony/GxE_iPSC/Deep/All/Variance_Partition
 
 library(tidyverse)
