@@ -22,3 +22,11 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 6. DEG_DSG_enrich.R: Calculate enrichment of differentially expressed genes in differentially spliced genes
 
 ### Variance partitioning of gene expression and splicing
+7. VarPart_cellTogether_GE.R: Variance partitioning of gene expression on all cell types together
+8. VarPart_cellSep_GE.R: Variance partitioning of gene expression on cell types separately
+9. VarPart_Splice.R: Variance partitioning of splicing, including both all cell types together and each cell type separately
+
+### ASE analysis
+10. ai_processing.R : Creates pileup files, which describes the number of reads mapping to each allele at heterozygous sites
+    - Pileup_makefile: Used for submitting each sequencing library to ai_processing.R
+11. 
