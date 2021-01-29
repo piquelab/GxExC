@@ -12,6 +12,7 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 
 ### Alignment
 1. align.sh: Aligns fastq's to the human genome (build GRCh37) using HISAT2 and performs QC and deduplication
+    - merge_bam.sh: Combines bam files from 2 rounds of deep sequencing for CM plates
 2. coverageBed_2.25.0.sh: Counts number of aligned reads per transcript
 3. bed2GeneCounts.R: Generates gene expression count matrix, where rows are transcripts and columns are sequencing libraries, to be used in DESeq2
 
@@ -29,4 +30,7 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 ### ASE analysis
 10. ai_processing.R : Creates pileup files, which describes the number of reads mapping to each allele at heterozygous sites
     - Pileup_makefile: Used for submitting each sequencing library to ai_processing.R
-11. 
+11. QuASAR_prep.R: Prepares makefiles to be analyzed by QuASAR
+12. combine_controls.R: Combines technical replicates of the 2 controls within each plate
+13. QuASAR_pipeline.R: Run QuASAR for each individual-plate combination
+14. ASE_barplot.R: Create barplot of ASE per treatment in Figure 3A
