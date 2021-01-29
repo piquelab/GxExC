@@ -34,3 +34,9 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 12. combine_controls.R: Combines technical replicates of the 2 controls within each plate
 13. QuASAR_pipeline.R: Run QuASAR for each individual-plate combination
 14. ASE_barplot.R: Create barplot of ASE per treatment in Figure 3A
+15. ASE_cor.R: Calculate correlations in ASE across individual, treatment, etc. and make Figure 3B
+
+### cASE analysis
+15. cASE_bigAnalysis_allCells.R: Analysis of cASE and ASE variance on all cell types analyzed together
+16. cASE_bigAnalysis_CellSep.R: Analysis of cASE and ASE variance on cell types analyzed separately
+17. ASE_cASE_annot_enrich.R: Calculate the enrichment of ASE and cASE SNPs in genomic annotations (Figure 3G)
