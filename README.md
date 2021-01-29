@@ -38,5 +38,6 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 
 ### cASE analysis
 16. cASE_bigAnalysis_allCells.R: Analysis of cASE and ASE variance on all cell types analyzed together
-16. cASE_bigAnalysis_CellSep.R: Analysis of cASE and ASE variance on cell types analyzed separately
-17. ASE_cASE_annot_enrich.R: Calculate the enrichment of ASE and cASE SNPs in genomic annotations (Figure 3G)
+17. cASE_bigAnalysis_CellSep.R: Analysis of cASE and ASE variance on cell types analyzed separately
+18. ASE_cASE_annot_enrich.R: Calculate the enrichment of ASE and cASE SNPs in genomic annotations (Figure 3G)
+19. GTEx_cASE_enrich.R: Calculate enrichment of ASE and cASE SNPs in GTEx eQTLs (Figure 3E)
