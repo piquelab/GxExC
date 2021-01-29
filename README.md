@@ -37,6 +37,6 @@ This repository contains scripts used to analyze data from exposing LCLs, IPSCs,
 15. ASE_cor.R: Calculate correlations in ASE across individual, treatment, etc. and make Figure 3B
 
 ### cASE analysis
-15. cASE_bigAnalysis_allCells.R: Analysis of cASE and ASE variance on all cell types analyzed together
+16. cASE_bigAnalysis_allCells.R: Analysis of cASE and ASE variance on all cell types analyzed together
 16. cASE_bigAnalysis_CellSep.R: Analysis of cASE and ASE variance on cell types analyzed separately
 17. ASE_cASE_annot_enrich.R: Calculate the enrichment of ASE and cASE SNPs in genomic annotations (Figure 3G)
